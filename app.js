@@ -56,6 +56,15 @@ app.get("/", (req, res) => {
     res.send("home here");
 });
 
+app.get("/getLists", async (req, res) => {
+    const allPosts = await Post.find({});
+    try {
+        res.send(allPosts);
+    } catch (error) {
+        res.status(500).send(error);
+    }
+});
+
 app.post("/submitList", async (req, res) => {
     console.log("in the 1 submitList");
     const post = new Post({
